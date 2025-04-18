@@ -1,5 +1,5 @@
 # lstm
-lstm for temperature prediction
+stm for temperature prediction
 
     Experiment environment:
     python: 3.8
@@ -21,3 +21,5 @@ For train and test
         Num_layer: 1
 
 # Result
+![image](loss.png)
+![image](weather pred.png)
