@@ -21,5 +21,3 @@ For train and test
         Num_layer: 1
 
 # Result
-![image] (loss.png)
-
