@@ -5,6 +5,7 @@ import torch
 from torch import nn
 import torch.optim as optim
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.decomposition import PCA
 
 # # path_ori = '疫情防控数据.csv'
 # # data_ori = pd.read_csv(path_ori, encoding='GBK')
@@ -25,7 +26,13 @@ for i in range(len(data)):
         data.iloc[i, 1] = float(data.iloc[i-1, 1])
 
 data = data.values[:, 1].reshape(-1, 1)
-print(data)
+data_rand = data * np.random.randn(1, 4)
+data_rand = data_rand @ np.random.randn(4, 1)
+data_all = np.concatenate((data, data_rand), axis=1)
+print(data, data_rand)
+pca = PCA(n_components=1)
+data = pca.fit_transform(data_all)
+
 
 # 归一化
 scaler = MinMaxScaler()
@@ -109,12 +116,14 @@ plt.xlabel('Time Step')
 plt.ylabel('Temperature')
 plt.legend()
 plt.show()
+plt.savefig('weather pred.png')
 
 # loss
 log_loss = np.array(log_loss)
 plt.plot(log_loss[:, 0], log_loss[:, 1])
-plt.title('Temperature Prediction')
-plt.xlabel('Time Step')
-plt.ylabel('Temperature')
+plt.title('Loss curve')
+plt.xlabel('epoch')
+plt.ylabel('loss')
 plt.legend()
 plt.show()
+plt.savefig('loss.png')
