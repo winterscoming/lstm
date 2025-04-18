@@ -21,7 +21,7 @@ For train and test
         Num_layer: 1
 
 # Result
-![image] (loss.png)
+![image] (https://github.com/winterscoming/lstm/main/loss.png)
 <div align="center">
     <img src="weather pred.png">
 </div>
